@@ -19,4 +19,4 @@ app.use(cors());
 app.use('/api',require('./src/routes/routes'));
 
 
-app.listen(3001);
+app.listen(80);

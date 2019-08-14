@@ -19,4 +19,4 @@ app.use(cors());
 app.use('/api',require('./src/routes/routes'));
 
 
-app.listen(8080,'167.99.120.218');
+app.listen(8080);

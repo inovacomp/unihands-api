@@ -88,15 +88,15 @@ const processaDados = (html) => {
 
     tabelaQuadroAulas.children('tbody').find('tr').each((index,element) => {
         let colunas = $(element).find('td');
-        let linhaRetorno = {};
-        if(colunas.eq(0).text().trim() != ''){
-            linhaRetorno.HORARIO = colunas.eq(0).text().trim();
-            linhaRetorno.SEGUNDA = filterHorarios(linhaRetorno.HORARIO,'SEG');
-            linhaRetorno.TERCA = filterHorarios(linhaRetorno.HORARIO,'TER');
-            linhaRetorno.QUARTA = filterHorarios(linhaRetorno.HORARIO,'QUA');
-            linhaRetorno.QUINTA =filterHorarios(linhaRetorno.HORARIO,'QUI');
-            linhaRetorno.SEXTA = filterHorarios(linhaRetorno.HORARIO,'SEX');
-            linhaRetorno.SABADO = filterHorarios(linhaRetorno.HORARIO,'SAB');
+        let linhaRetorno = [];
+        if(index>0){
+            linhaRetorno[0] = colunas.eq(0).text().trim();
+            linhaRetorno[1] = filterHorarios(linhaRetorno[0],'SEG');
+            linhaRetorno[2] = filterHorarios(linhaRetorno[0],'TER');
+            linhaRetorno[3] = filterHorarios(linhaRetorno[0],'QUA');
+            linhaRetorno[4] =filterHorarios(linhaRetorno[0],'QUI');
+            linhaRetorno[5] = filterHorarios(linhaRetorno[0],'SEX');
+            linhaRetorno[6] = filterHorarios(linhaRetorno[0],'SAB');
             retorno.MATERIAS_HORARIOS.push(linhaRetorno);
         }
     });

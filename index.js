@@ -11,7 +11,7 @@ app.use(cors());
 // requireDir('./src/api');
 
 //rotas
-app.use('/api',require('./src/routes/routes'));
+app.use('/api',require('./src/routes'));
 
 
 app.listen(3000);

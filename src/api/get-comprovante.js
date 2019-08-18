@@ -1,13 +1,12 @@
-const cheerio = require('cheerio');
-const iconv = require('iconv-lite');
 var request = require('request');
 
+const helper = require('../helpers/helpers');
 
 const processaDados = (html) => {
     let retorno = {};
     
     //instancia do HTML para Objeto
-    const $ = cheerio.load(iconv.decode(Buffer.from(html),"ISO-8859-1"),{ decodeEntities: false });
+    const $ = helper.instanceCheerio(html);
     
     //busca busca no DOM por texto na tag
     const bFilter = search => {
@@ -122,13 +121,24 @@ const processaDados = (html) => {
     return retorno;
 };
 
+const verificaLogin = (html) => {
+    //instancia do HTML para Objeto
+    const $ = helper.instanceCheerio(html);
+    if($('[name=usuarioForm]').length){
+        return false;
+    }
+    else{
+        return true;
+    }
+} 
+
 module.exports = {
-    async login(req,res){
+    async execute(req,res){
         var dados = {
-            cpf : req.params.cpf,
-            senha : req.params.senha
+            cpf : req.body.cpf,
+            senha : req.body.senha
         }
-        
+
         retornar = (x) => res.send(processaDados(x));
 
         request = request.defaults({ jar : request.jar() }); //preserva a sessão jar
@@ -137,7 +147,12 @@ module.exports = {
             method:"POST",
             form: dados
         },
-        () => {
+        (error, response, body) => {
+            if(!verificaLogin(body)){
+                res.send({ERRO_LOGIN : true})
+                return;
+            }
+            
             request({
                 url:"https://siac.ufba.br/SiacWWW/ConsultarComprovanteMatricula.do",
                 method:"GET",

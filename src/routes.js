@@ -1,9 +1,9 @@
 const express = require('express');
 const routes = express.Router();
 
-const login = require('../api/login');
+const getComprovante = require('./api/get-comprovante');
 
-routes.get('/login/:cpf/:senha',login.login);
+routes.post('/get-comprovante',getComprovante.execute);
 
 routes.get('/',(req,res) => {
     return res.send('wellcome');

@@ -30,13 +30,23 @@ const processaDados = (html) => {
         let colunas = $(element).find('td');
         let linhaRetorno = {};
         if(colunas.eq(8).text().trim() != ''){
+            linhaRetorno.ID = index+1;
             linhaRetorno.CODIGOMATERIA = colunas.eq(0).text().trim();
             if(linhaRetorno.CODIGOMATERIA == ''){
-                linhaRetorno.CODIGOMATERIA = retorno.MATERIAS_COMPROVANTE[index].CODIGOMATERIA;
+                linhaRetorno.CODIGOMATERIA = retorno.MATERIAS_COMPROVANTE[index-1].CODIGOMATERIA;
             }
             linhaRetorno.NOMEMATERIA = colunas.eq(1).text().trim();
+            if(linhaRetorno.NOMEMATERIA == ''){
+                linhaRetorno.NOMEMATERIA = retorno.MATERIAS_COMPROVANTE[index-1].NOMEMATERIA;
+            }
             linhaRetorno.CH = colunas.eq(2).text().trim();
+            if(linhaRetorno.CH == ''){
+                linhaRetorno.CH = retorno.MATERIAS_COMPROVANTE[index-1].CH;
+            }
             linhaRetorno.TURMA = colunas.eq(3).text().trim();
+            if(linhaRetorno.TURMA == ''){
+                linhaRetorno.TURMA = retorno.MATERIAS_COMPROVANTE[index-1].TURMA;
+            }
             linhaRetorno.TURMA += '-'+colunas.eq(4).text().trim();
             linhaRetorno.DIA = colunas.eq(5).text().trim();
             linhaRetorno.HORARIO = colunas.eq(6).text().trim();

@@ -23,22 +23,6 @@ const processaDados = (html) => {
     /*INICIO sessão de materias do comprovante*/
     let tabelaMaterias = $('table').find('table').eq(5);
     retorno.MATERIAS_COMPROVANTE = [];
-
-    tabelaMaterias.children('thead').find('tr').each((index,element) => {
-        let colunas = $(element).find('th');
-        let linhaRetorno = {};
-        if(colunas.eq(0).text().trim() != ''){
-            linhaRetorno.CODIGOMATERIA = colunas.eq(0).text().trim();
-            linhaRetorno.NOMEMATERIA = colunas.eq(1).text().trim();
-            linhaRetorno.CH = colunas.eq(2).text().trim();
-            linhaRetorno.TURMA = colunas.eq(3).text().trim();
-            linhaRetorno.DIA = colunas.eq(5).text().trim();
-            linhaRetorno.HORARIO = colunas.eq(6).text().trim();
-            linhaRetorno.LOCAL = colunas.eq(7).text().trim();
-            linhaRetorno.DOCENTE = colunas.eq(8).text().trim();
-            retorno.MATERIAS_COMPROVANTE.push(linhaRetorno);
-        }
-    });
     
     let horariosAula = [];
 

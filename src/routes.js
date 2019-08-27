@@ -1,9 +1,9 @@
 const express = require('express');
 const routes = express.Router();
 
-const getComprovante = require('./api/get-comprovante');
+const getDados = require('./api/get-dados');
 
-routes.post('/get-comprovante',getComprovante.execute);
+routes.post('/get-dados',getDados.execute);
 
 routes.get('/',(req,res) => {
     return res.send('wellcome');

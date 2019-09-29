@@ -2,6 +2,7 @@ var request = require('request');
 const login = require('./verifica-login');
 const comprovante = require('./get-comprovante');
 const componentesCursados = require('./get-componentes-cursados');
+const materiasObrigatorias = require('./get-materias-obrigatorias');
 
 /*callback que verifica as credenciais, consulta o comprovante de matricula
 e chama a callback de componentes curriculares cursados*/
@@ -35,6 +36,17 @@ const callback2 = async (error, response, body) => {
 
 const callback3 = async (error, response, body) => {
     retorno.COMPONENTES_CURSADOS = await componentesCursados.run(body);
+    request({
+        url: "https://siac.ufba.br/SiacWWW/ConsultarDisciplinasObrigatorias.do",
+        method: "GET",
+        encoding: null
+    },
+    callback4
+    )
+};
+
+const callback4 = async (error, response, body) => {
+    retorno.MATERIAS_OBRIGATORIAS = await materiasObrigatorias.run(body);
     retornar();
 };
 

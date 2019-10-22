@@ -29,7 +29,6 @@ const resolverSiglas = (sigla) => {
 module.exports = {
     async run(html) {
         let retorno = {};
-        console.log(html);
         //instancia do HTML para Objeto
         const $ = helper.instanceCheerio(html);
 

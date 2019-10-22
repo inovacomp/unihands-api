@@ -47,8 +47,25 @@ const callback3 = async (error, response, body) => {
 
 const callback4 = async (error, response, body) => {
     retorno.MATERIAS_OBRIGATORIAS = await materiasObrigatorias.run(body);
+    request({
+        url: "https://siac.ufba.br/SiacWWW/GerarComprovanteMatricula.do",
+        method: "GET",
+        encoding: null,
+        headers: { 
+            'Accept': 'application/pdf', 
+            'Accept-Encoding': 'identity'
+          }  
+    },
+    callback5
+    )
+};
+const callback5 = async (error, response, body) => {
+    console.log(body);
+    retorno.COMPROVANTE_PDF = JSON.stringify(body);
     retornar();
 };
+
+https://siac.ufba.br/SiacWWW/GerarComprovanteMatricula.do
 
 module.exports = {
     async execute(req, res) {

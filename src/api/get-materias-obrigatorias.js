@@ -2,6 +2,14 @@ var request = require('request');
 
 const helper = require('../helpers/helpers');
 
+const getParamUrl = (name,url) => {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(url);
+    if (results==null) {
+       return null;
+    }
+    return decodeURI(results[1]) || 0;
+}
+
 module.exports = {
     async run(html) {
         let retorno = {};
@@ -23,6 +31,7 @@ module.exports = {
             }
             linhaRetorno.CODIGO = colunas.eq(2).text().trim();
             linhaRetorno.NOME = colunas.eq(3).text().trim();
+            linhaRetorno.PER_INICIAL = getParamUrl('nuPerInicial',colunas.eq(3).children('a').attr('href'));
             linhaRetorno.PRE_REQ = colunas.eq(4).text().trim();
             if(linhaRetorno.PRE_REQ != '--' && linhaRetorno.PRE_REQ != ''){
                 linhaRetorno.PRE_REQ = linhaRetorno.PRE_REQ.split(',');

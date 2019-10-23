@@ -60,12 +60,10 @@ const callback4 = async (error, response, body) => {
     )
 };
 const callback5 = async (error, response, body) => {
-    console.log(body);
     retorno.COMPROVANTE_PDF = JSON.stringify(body);
     retornar();
 };
 
-https://siac.ufba.br/SiacWWW/GerarComprovanteMatricula.do
 
 module.exports = {
     async execute(req, res) {

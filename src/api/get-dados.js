@@ -60,7 +60,7 @@ const callback4 = async (error, response, body) => {
     )
 };
 const callback5 = async (error, response, body) => {
-    retorno.COMPROVANTE_PDF = JSON.stringify(body.toString('base64'));
+    retorno.COMPROVANTE_PDF = body.toString('base64');
     retornar();
 };
 

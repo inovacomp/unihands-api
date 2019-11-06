@@ -52,7 +52,7 @@ const callback4 = async (error, response, body) => {
         method: "GET",
         encoding: null,
         headers: { 
-            'Accept': 'application/pdf', 
+            'Accept': 'text/pdf', 
             'Accept-Encoding': 'identity'
           }  
     },
@@ -60,7 +60,7 @@ const callback4 = async (error, response, body) => {
     )
 };
 const callback5 = async (error, response, body) => {
-    retorno.COMPROVANTE_PDF = JSON.stringify(body);
+    retorno.COMPROVANTE_PDF = JSON.stringify(body.toString('base64'));
     retornar();
 };
 

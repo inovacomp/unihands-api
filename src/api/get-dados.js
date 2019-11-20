@@ -3,6 +3,7 @@ const login = require('./verifica-login');
 const comprovante = require('./get-comprovante');
 const componentesCursados = require('./get-componentes-cursados');
 const materiasObrigatorias = require('./get-materias-obrigatorias');
+const resumoCurso = require('./get-resumo-curso');
 
 /*callback que verifica as credenciais, consulta o comprovante de matricula
 e chama a callback de componentes curriculares cursados*/
@@ -23,7 +24,7 @@ const callback1 = async (error, response, body) => {
 
 /*callback que consulta os componentes curriculares cursados*/
 const callback2 = async (error, response, body) => {
-    
+
     retorno.COMPROVANTE = await comprovante.run(body);
     request({
         url: "https://siac.ufba.br/SiacWWW/ConsultarComponentesCurricularesCursados.do",
@@ -41,25 +42,35 @@ const callback3 = async (error, response, body) => {
         method: "GET",
         encoding: null
     },
-    callback4
+        callback4
     )
 };
 
 const callback4 = async (error, response, body) => {
     retorno.MATERIAS_OBRIGATORIAS = await materiasObrigatorias.run(body);
     request({
-        url: "https://siac.ufba.br/SiacWWW/GerarComprovanteMatricula.do",
+        url: "https://siac.ufba.br/SiacWWW/ConsultarCurriculoCurso.do",
         method: "GET",
-        encoding: null,
-        headers: { 
-            'Accept': 'text/pdf', 
-            'Accept-Encoding': 'identity'
-          }  
+        encoding: null
     },
-    callback5
+        callback5
     )
 };
 const callback5 = async (error, response, body) => {
+    retorno.RESUMO_CURSO = await resumoCurso.run(body);
+    request({
+        url: "https://siac.ufba.br/SiacWWW/GerarComprovanteMatricula.do",
+        method: "GET",
+        encoding: null,
+        headers: {
+            'Accept': 'text/pdf',
+            'Accept-Encoding': 'identity'
+        }
+    },
+        callback6
+    )
+};
+const callback6 = async (error, response, body) => {
     retorno.COMPROVANTE_PDF = body.toString('base64');
     retornar();
 };

@@ -65,7 +65,7 @@ module.exports = {
             }
         });
         /*FIM*/
-
+        
         //INICIO Monta os horários das materias
         let tabelaQuadroAulas = $('#curriculoTable');
         retorno.MATERIAS_HORARIOS = [];
@@ -73,7 +73,9 @@ module.exports = {
         const filterHorarios = (key, dia) => {
             let retorno = '';
             horariosAula.forEach(element => {
-                if (Date.parse('01/01/2019 ' + key) >= Date.parse('01/01/2019 ' + element.HORARIO_INI) && Date.parse('01/01/2011 ' + key) <= Date.parse('01/01/2011 ' + element.HORARIO_FIM) && element.DIA == dia) {
+                if (Date.parse('01/01/2000 ' + key) >= Date.parse('01/01/2000 ' + element.HORARIO_INI) && 
+                    Date.parse('01/01/2000 ' + key) < Date.parse('01/01/2000 ' + element.HORARIO_FIM) && 
+                    element.DIA == dia) {
                     retorno = element.MATERIA;
                     return;
                 }
@@ -84,6 +86,7 @@ module.exports = {
         tabelaQuadroAulas.children('tbody').find('tr').each((index, element) => {
             let colunas = $(element).find('td');
             let linhaRetorno = [];
+            
             if (index > 0) {
                 linhaRetorno[0] = colunas.eq(0).text().trim();
                 linhaRetorno[1] = filterHorarios(linhaRetorno[0], 'SEG');
@@ -96,7 +99,7 @@ module.exports = {
             }
         });
         /*FIM*/
-
+        
         /*LOCAIS DE AULA*/
         retorno.LOCAIS_AULA = [];
         let tabelaLocaisAula = $('table').find('table').eq(6);

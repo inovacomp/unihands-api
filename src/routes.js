@@ -8,10 +8,14 @@ routes.post('/get-dados', getDados.execute);
 routes.get('/get-info-materia/:disciplina/:nuPerInicial', getInfoMateria.execute);
 routes.get('/verifica-atualizacao', (req, res) => {
     return res.send({
-        ULTIMA_ATT : 1583643981642,
-        ENDERECO_ATT : 'https://ayrtonsilas.com.br/api/siac-mobile.apk'
+        ULTIMA_ATT : 1583644569476,
+        ENDERECO_ATT : 'https://ayrtonsilas.com.br/api/download-apk'
     })
 })
+app.get('/download-apk', async (req, res) => {
+    const file = `${__dirname}/src/apk/siac-mobile.apk`;
+    res.download(file); // Set disposition and send it.
+  });
 
 routes.get('/', (req, res) => {
     return res.send('wellcome');

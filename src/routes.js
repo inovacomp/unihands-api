@@ -8,7 +8,7 @@ routes.post('/get-dados', getDados.execute);
 routes.get('/get-info-materia/:disciplina/:nuPerInicial', getInfoMateria.execute);
 routes.get('/verifica-atualizacao', (req, res) => {
     return res.send({
-        ULTIMA_ATT: 1583691293312,
+        ULTIMA_ATT: 1583695051256,
         ENDERECO_ATT: 'https://ayrtonsilas.com.br/api/apk'
     })
 })

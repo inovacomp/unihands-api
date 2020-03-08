@@ -6,10 +6,10 @@ const getInfoMateria = require('./api/get-info-materia');
 
 routes.post('/get-dados', getDados.execute);
 routes.get('/get-info-materia/:disciplina/:nuPerInicial', getInfoMateria.execute);
-routes.get('/verifica-atualizacao', async (req, res) => {
+routes.get('/verifica-atualizacao', (req, res) => {
     return res.send({
-        TEM_AT = true,
-        ENDERECO_ATT = 'https://ayrtonsilas.com.br/siac-mobile.apk'
+        TEM_AT : true,
+        ENDERECO_ATT : 'https://ayrtonsilas.com.br/siac-mobile.apk'
     })
 })
 

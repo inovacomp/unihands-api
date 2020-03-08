@@ -85,8 +85,7 @@ module.exports = {
 
         //monta o padrão de retorno
         retorno = {
-            TEM_AT = true,
-            ENDERECO_ATT = 'https://ayrtonsilas.com.br/siac-mobile.apk'
+            
         };
 
         //define uma função para retornar os dados

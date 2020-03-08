@@ -13,7 +13,7 @@ routes.get('/verifica-atualizacao', (req, res) => {
     })
 })
 routes.get('/download-apk', async (req, res) => {
-    const file = `~/src/apk/siac-mobile.apk`;
+    const file = `src/apk/siac-mobile.apk`;
     res.download(file); // Set disposition and send it.
   });
 

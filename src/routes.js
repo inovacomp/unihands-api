@@ -12,7 +12,7 @@ routes.get('/verifica-atualizacao', (req, res) => {
         ENDERECO_ATT : 'https://ayrtonsilas.com.br/api/download-apk'
     })
 })
-app.get('/download-apk', async (req, res) => {
+routes.get('/download-apk', async (req, res) => {
     const file = `${__dirname}/src/apk/siac-mobile.apk`;
     res.download(file); // Set disposition and send it.
   });

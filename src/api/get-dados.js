@@ -84,9 +84,7 @@ module.exports = {
         }
 
         //monta o padrão de retorno
-        retorno = {
-            
-        };
+        retorno = {};
 
         //define uma função para retornar os dados
         retornar = () => res.send(retorno);
